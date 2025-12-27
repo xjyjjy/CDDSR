@@ -1,0 +1,141 @@
+#only (image+kernel) in liif  sft body
+train_dataset:
+  root_path_KernelWarehouse: ./CDD/motion_again/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
+  pca_matrix_path: ./depth_pca_15.pth
+  dataset:
+    name: five-image-folders
+    args:
+      root_path_HR: ./CDD/motion_again/HR/train
+      root_path_LR: ./CDD/motion_again/LR/train/1.0
+      root_path_Depth: ./CDD/motion/depth_estimate/train
+      root_path_Label: ./CDD/motion/seg_estimate/train
+      root_path_Kernel: ./CDD/motion_again/Kernel/train
+      #root_path_KernelWarehouse: /mnt/ssd_data/new_dataset_blind/depth/kernel_warehouse #kernel warehouse
+      first_k: 800
+      repeat: 5
+      cache: bin
+  wrapper:
+    name: sr-blur-kernel
+    args:
+      inp_size: 96
+      hr_size: 96
+      scale_min: 1.0
+      scale_max: 4.0
+      augment: False
+      test: False
+      deg_type: motion
+  batch_size: 16
+
+val_dataset4:
+  root_path_KernelWarehouse:  ./CDD/motion_again/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
+  pca_matrix_path: ./depth_pca_15.pth
+  dataset:
+    name: five-image-folders
+    args:
+      root_path_HR: ./CDD/motion_again/HR/test
+      root_path_LR: ./CDD/motion_again/LR/test/1.0
+      root_path_Depth: ./CDD/motion/depth_estimate/test
+      root_path_Label: ./CDD/motion/seg_estimate/test
+      root_path_Kernel: ./CDD/motion_again/Kernel/test
+      first_k: 20
+      repeat: 1
+      cache: bin
+  wrapper:
+    name: sr-blur-kernel
+    args:
+      scale_min: 4.0
+      scale_max: 4.0
+      augment: false
+      test: True
+      deg_type: motion
+  batch_size: 1
+
+val_dataset2:
+  root_path_KernelWarehouse:  ./CDD/motion_again/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
+  pca_matrix_path: ./depth_pca_15.pth
+  dataset:
+    name: five-image-folders
+    args:
+      root_path_HR: ./CDD/motion_again/HR/test
+      root_path_LR: ./CDD/motion_again/LR/test/1.0
+      root_path_Depth: ./CDD/motion/depth_estimate/test
+      root_path_Label: ./CDD/motion/seg_estimate/test
+      root_path_Kernel: ./CDD/motion_again/Kernel/test
+      first_k: 20
+      repeat: 1
+      cache: bin
+  wrapper:
+    name: sr-blur-kernel
+    args:
+      scale_min: 2.0
+      scale_max: 2.0
+      augment: false
+      test: True
+      deg_type: motion
+  batch_size: 1
+eval_type: div2k-2
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  gt: {sub: [0.5], div: [0.5]}
+
+
+model:
+  name: s1
+  args:
+    encoder_spec:
+      name: edsr-baseline
+      args:
+        no_upsampling: True
+    kernel_encoder_spec:
+      name: kernel_encoder
+      args:
+        nf: 64
+        kernel_size: 21
+        code_length: 15
+        ch_div: 4
+    restore_spec:
+      name: restoration
+      args:
+        code_length_k: 15
+        code_length: 15
+        in_nc1: 32
+        in_nc2: 64
+        nf: 64
+        out_nc: 3
+        nb: 4
+        win_size: [16,16]
+    imnet_spec:
+          name: mlp_attn
+          args:
+            in_dim: 580
+            out_dim: 64
+            hidden_list: [256, 256, 256, 256]
+            feat_unfold: true
+            local_ensemble: False
+            cell_decode: True
+        
+
+    feat_unfold: true
+    local_ensemble: true
+    cell_decode: true
+    width: 256
+    blocks: 16
+    code_length: 15
+    kernel_size: 21
+    pca_matrix_path: /ghome/xiajy/code/blindsr/liif_blind_ours/depth_pca_15.pth
+
+state: stage2
+optimizer:
+  name: adam
+  args:
+    lr:  1.e-4 #2.5e-5 #1.e-4
+epoch_max: 1000
+multi_step_lr:
+  milestones: [200, 400, 600, 800]
+  gamma: 0.5
+
+
+train_weight: [1, 0.1, 0.05, 0.01, 0.05, 0.01]
+epoch_val: 1000
+epoch_save: 100
+strict_load: False

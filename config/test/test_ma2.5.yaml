@@ -1,0 +1,28 @@
+val_dataset:
+  root_path_KernelWarehouse:  ./CDD/motion_again/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
+  pca_matrix_path: ./depth_pca_15.pth
+  dataset:
+    name: five-image-folders
+    args:
+      root_path_HR: ./CDD/motion_again/HR/test
+      root_path_LR: ./CDD/motion_again/LR/test/1.0
+      root_path_Depth: ./CDD/motion/depth_input_fortest_hr/2.5
+      root_path_Label: ./CDD/motion/seg_input_fortest_hr/2.5
+      root_path_Kernel: ./CDD/depth/KE/c15_4_1_dsk_1_ma_finetune_sharePE_3_test_rd/data
+      first_k: 100
+      repeat: 1
+      cache: bin
+  wrapper:
+    name: sr-blur-kernel
+    args:
+      scale_min: 2.5
+      scale_max: 2.5
+      augment: false
+      test: True
+  batch_size: 1
+eval_type: div2k-3
+train_stage: stage3V2_0
+# save_path: /gdata2/xiajy/output/motion/ma/dsk_1_spKE/
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  gt: {sub: [0.5], div: [0.5]}
