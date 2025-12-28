@@ -14,11 +14,13 @@ Jiyuan Xia, Yuanshen Guan, Ruikang Xu, Jiacheng Li, Mingde Yao, and Zhiwei Xiong
 ## 🖼️ Main Figure
 
 <p align="center">
-  <img src="assets/pipeline.pdf" width="100%">
+  <img src="./assets/pipeline.png" width="100%">
 </p>
 <p align="center">
 Overview of our proposed framework / pipeline.
 </p>
+
+
 
 ---
 
