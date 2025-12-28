@@ -101,6 +101,8 @@ echo "x4_motion"
 python test.py  --config configs/test/test_ma4.yaml  --model stage2_weight_path --gpu 0
 ```
 
+Download pre-trained models from this [link](https://pan.baidu.com/s/1dbqlLU667yHqPa3TcOz7_g?pwd=1234), and place them in the ./checkpoint directory.
+
 ---
 
 ## 🤝 Acknowledgements
