@@ -73,31 +73,39 @@ python train.py  --config config/ma_s2.yaml  --name your_path --gpu 0,1,2,3
 CDD Defocus Blur:
 
 ```bash
-echo "x2_defocus"
-python  test.py  --config config/test/test_nyu2.yaml  --model stage2_weight_path --gpu 0 &
-echo "x2.5_defocus"
-python  test.py  --config config/test/test_nyu2.5.yaml  --model stage2_weight_path --gpu 0 &
-echo "x3_defocus"
-python  test.py  --config config/test/test_nyu3.yaml  --model stage2_weight_path --gpu 0 &
-echo "x3.5_defocus"
-python  test.py  --config config/test/test_nyu3.5.yaml  --model stage2_weight_path --gpu 0 &
-echo "x4_defocus"
-python  test.py  --config config/test/test_nyu4.yaml  --model stage2_weight_path --gpu 0 
+echo "x2_defocus" && \
+python test.py --config config/test/test_nyu2.yaml --model ${stage2_weight_path} --gpu 0 && \
+
+echo "x2.5_defocus" && \
+python test.py --config config/test/test_nyu2.5.yaml --model ${stage2_weight_path} --gpu 0 && \
+
+echo "x3_defocus" && \
+python test.py --config config/test/test_nyu3.yaml --model ${stage2_weight_path} --gpu 0 && \
+
+echo "x3.5_defocus" && \
+python test.py --config config/test/test_nyu3.5.yaml --model ${stage2_weight_path} --gpu 0 && \
+
+echo "x4_defocus" && \
+python test.py --config config/test/test_nyu4.yaml --model ${stage2_weight_path} --gpu 0
 ```
 
 CDD Motion Blur:
 
 ```bash
-echo "x2_motion"
-python test.py  --config config/test/test_ma2.yaml  --model stage2_weight_path  --gpu 0 &
-echo "x2.5_motion"
-python test.py  --config configs/test/test_ma2.5.yaml  --model stage2_weight_path --gpu 0 &
-echo "x3_motion"
-python  test.py  --config configs/test/test_ma3.yaml  --model stage2_weight_path --gpu 0 &
-echo "x3.5_motion"
-python test.py  --config configs/test/test_ma3.5.yaml  --model stage2_weight_path --gpu 0 &
-echo "x4_motion"
-python test.py  --config configs/test/test_ma4.yaml  --model stage2_weight_path --gpu 0
+echo "x2_motion" && \
+python test.py --config config/test/test_ma2.yaml --model ${stage2_weight_path} --gpu 0 && \
+
+echo "x2.5_motion" && \
+python test.py --config config/test/test_ma2.5.yaml --model ${stage2_weight_path} --gpu 0 && \
+
+echo "x3_motion" && \
+python test.py --config config/test/test_ma3.yaml --model ${stage2_weight_path} --gpu 0 && \
+
+echo "x3.5_motion" && \
+python test.py --config config/test/test_ma3.5.yaml --model ${stage2_weight_path} --gpu 0 && \
+
+echo "x4_motion" && \
+python test.py --config config/test/test_ma4.yaml --model ${stage2_weight_path} --gpu 0
 ```
 
 Download pre-trained models from this [link](https://pan.baidu.com/s/1dbqlLU667yHqPa3TcOz7_g?pwd=1234), and place them in the ./checkpoint directory.
