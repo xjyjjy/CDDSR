@@ -1,8 +1,5 @@
 # **Learning Continuous Degradation for Arbitrary Scale Blind Super-Resolution**  
 
-Official Repository for **Learning Continuous Degradation for Arbitrary-Scale Blind
-Super-Resolution**  
-
 ---
 
 ## 📝 Introduction
