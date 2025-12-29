@@ -1,11 +1,11 @@
 train_dataset:
-  root_path_KernelWarehouse: ./CDD/motion_again/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
+  root_path_KernelWarehouse: ./CDD/motion/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
   pca_matrix_path: ./depth_pca_15.pth
   dataset:
     name: five-image-folders
     args:
-      root_path_HR: ./CDD/motion_again/HR/train
-      root_path_LR: ./CDD/motion_again/LR/train/1.0
+      root_path_HR: ./CDD/motion/HR/train
+      root_path_LR: ./CDD/motion/LR/train/1.0
       root_path_Depth: ./CDD/motion/depth_estimate/train
       root_path_Label: ./CDD/motion/seg_estimate/train
       root_path_Kernel: ./CDD/KE/ma_train/data
@@ -25,13 +25,13 @@ train_dataset:
   batch_size: 12
 
 val_dataset4:
-  root_path_KernelWarehouse:  ./CDD/motion_again/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
+  root_path_KernelWarehouse:  ./CDD/motion/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
   pca_matrix_path: ./depth_pca_15.pth
   dataset:
     name: five-image-folders
     args:
-      root_path_HR: ./CDD/motion_again/HR/test
-      root_path_LR: ./CDD/motion_again/LR/test/1.0
+      root_path_HR: ./CDD/motion/HR/test
+      root_path_LR: ./CDD/motion/LR/test/1.0
       root_path_Depth: ./CDD/motion/depth_estimate/test
       root_path_Label: ./CDD/motion/seg_estimate/test
       root_path_Kernel: ./CDD/KE/ma_test/data
@@ -49,13 +49,13 @@ val_dataset4:
   batch_size: 1
 
 val_dataset2:
-  root_path_KernelWarehouse:  ./CDD/motion_again/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
+  root_path_KernelWarehouse:  ./CDD/motion/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
   pca_matrix_path: ./depth_pca_15.pth
   dataset:
     name: five-image-folders
     args:
-      root_path_HR: ./CDD/motion_again/HR/test
-      root_path_LR: ./CDD/motion_again/LR/test/1.0
+      root_path_HR: ./CDD/motion/HR/test
+      root_path_LR: ./CDD/motion/LR/test/1.0
       root_path_Depth: ./CDD/motion/depth_estimate/test
       root_path_Label: ./CDD/motion/seg_estimate/test
       root_path_Kernel: ./CDD/KE/ma_test/data

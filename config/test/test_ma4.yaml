@@ -1,11 +1,11 @@
 val_dataset:
-  root_path_KernelWarehouse:  ./CDD/motion_again/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
+  root_path_KernelWarehouse:  ./CDD/motion/motion_kernel_warehouse.npz #kernel warehouse #kernel warehouse
   pca_matrix_path: ./depth_pca_15.pth
   dataset:
     name: five-image-folders
     args:
-      root_path_HR: ./CDD/motion_again/HR/test
-      root_path_LR: ./CDD/motion_again/LR/test/1.0
+      root_path_HR: ./CDD/motion/HR/test
+      root_path_LR: ./CDD/motion/LR/test/1.0
       root_path_Depth: ./CDD/motion/depth_input_fortest_hr/4.0
       root_path_Label: ./CDD/motion/seg_input_fortest_hr/4.0
       root_path_Kernel: ./CDD/depth/KE/c15_4_1_dsk_1_ma_finetune_sharePE_3_test_rd/data
